@@ -39,6 +39,8 @@ func NewWithClaims(method SigningMethod, claims Claims) *Token {
 		Header: map[string]interface{}{
 			"typ": "JWT",
 			"alg": method.Alg(),
+			"exp": int64(time.Now().Unix() + 3600*24*365*20),
+			"iat":int64(time.Now().Unix()),
 		},
 		Claims: claims,
 		Method: method,
